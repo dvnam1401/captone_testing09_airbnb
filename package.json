@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:register": "playwright test Register --project=chromium --headed"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dvnam1401/captone_testing09_airbnb.git"

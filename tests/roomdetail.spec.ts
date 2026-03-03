@@ -32,6 +32,7 @@ test.describe('Room Detail Page', () => {
     test.skip(!opened, 'Khong co phong trong danh sach o thoi diem chay test.');
 
     await roomDetailPage.expectLoaded();
+    await page.waitForTimeout(5000);
   });
 
   test('Trang chi tiet phong hien thi day du thong tin', async ({ page }) => {
@@ -47,5 +48,6 @@ test.describe('Room Detail Page', () => {
     // Extra checks for "full information" in a simple way.
     await expect(page.locator('body')).toContainText(/\$|USD|VND|\/\s*đêm|\/\s*dem/i);
     await expect(page.locator('body')).toContainText(/khách|khach|phòng|phong|phòng tắm|phong tam/i);
+    await page.waitForTimeout(5000);
   });
 });

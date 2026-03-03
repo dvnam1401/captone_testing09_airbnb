@@ -8,7 +8,8 @@ test.describe('Rooms Page', () => {
 
     await roomsPage.goto();
     await roomsPage.expectLoaded();
-    await roomsPage.expectResultsOrEmptyState();
+    await roomsPage.expectHasResults();
+    await page.waitForTimeout(5000);
   });
 
   test('Chon dia diem va xac minh the phong hien thi day du thong tin', async ({ page }) => {

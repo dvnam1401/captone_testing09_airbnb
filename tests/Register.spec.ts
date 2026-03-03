@@ -16,9 +16,11 @@ test.describe('Register', () => {
 
         await registerModal.waitForModal();
 
+        await registerModal.submit();
+
         await registerModal.fillName('hoang1911');
 
-        await registerModal.fillEmail('hoang1911@gmail.com')
+        await registerModal.fillEmail('hoang19112@gmail.com')
 
         await registerModal.fillPassword('123456')
 

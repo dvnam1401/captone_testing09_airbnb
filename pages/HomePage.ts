@@ -37,4 +37,13 @@ export class HomePage {
         await this.dangNhapButton.click();
     }
 
+    async logout(): Promise<void> {
+        await this.userMenuButton.waitFor({ state: 'visible' });
+        await this.userMenuButton.click();
+
+        const signOutButton = this.page.getByRole("button", { name: "Sign out" });
+        await signOutButton.waitFor({ state: 'visible' });
+        await signOutButton.click();
+    }
+
 }

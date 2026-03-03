@@ -34,7 +34,7 @@ test.describe('Room Detail Page', () => {
     await roomDetailPage.expectLoaded();
   });
 
-  test('TC_RD02 - Trang chi tiet phong hien thi day du thong tin', async ({ page }) => {
+  test('Trang chi tiet phong hien thi day du thong tin', async ({ page }) => {
     const roomsPage = new RoomsPage(page);
     const roomDetailPage = new RoomDetailPage(page);
 

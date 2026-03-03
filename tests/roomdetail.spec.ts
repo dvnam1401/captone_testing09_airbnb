@@ -8,14 +8,24 @@ async function openAnyRoomFromList(roomsPage: RoomsPage): Promise<boolean> {
 
   await roomsPage.goto();
   if (await roomsPage.hasResults()) {
-    await roomsPage.openFirstRoomDetail();
+    const count = await roomsPage.roomLinks.count();
+    const randomIndex = Math.floor(Math.random() * count);
+    const randomRoom = roomsPage.roomLinks.nth(randomIndex);
+    await randomRoom.scrollIntoViewIfNeeded();
+    await expect(randomRoom).toBeVisible({ timeout: 10000 });
+    await randomRoom.click();
     return true;
   }
 
   for (const slug of candidateSlugs) {
     await roomsPage.gotoBySlug(slug);
     if (await roomsPage.hasResults()) {
-      await roomsPage.openFirstRoomDetail();
+      const count = await roomsPage.roomLinks.count();
+      const randomIndex = Math.floor(Math.random() * count);
+      const randomRoom = roomsPage.roomLinks.nth(randomIndex);
+      await randomRoom.scrollIntoViewIfNeeded();
+      await expect(randomRoom).toBeVisible({ timeout: 10000 });
+      await randomRoom.click();
       return true;
     }
   }
@@ -43,6 +53,10 @@ test.describe('Room Detail Page', () => {
     test.skip(!opened, 'Khong co phong trong danh sach o thoi diem chay test.');
 
     await roomDetailPage.expectLoaded();
+    for (let i = 0; i < 6; i++) {
+      await page.mouse.wheel(0, 260);
+      await page.waitForTimeout(250);
+    }
     await roomDetailPage.expectMainInfoVisible();
 
     // Extra checks for "full information" in a simple way.

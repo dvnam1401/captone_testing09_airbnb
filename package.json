@@ -13,7 +13,8 @@
     "test:booking-success": "playwright test booking-success --project=chromium --headed",
     "test:booking-price": "playwright test booking-price --project=chromium --headed",
     "test:booking-negative": "playwright test booking-negative --project=chromium --headed",
-    "test:booking-history": "playwright test booking-history --project=chromium --headed"
+    "test:booking-history": "playwright test booking-history --project=chromium --headed",
+    "test:register": "playwright test Register --project=chromium --headed"
   },
   "repository": {
     "type": "git",

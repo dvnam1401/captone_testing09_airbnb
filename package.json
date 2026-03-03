@@ -17,7 +17,8 @@
     "test:register": "playwright test Register --project=chromium --headed",
     "test:home": "playwright test tests/home.spec.ts --project=chromium --headed",
     "test:rooms": "playwright test tests/rooms.spec.ts --project=chromium --headed",
-    "test:roomdetail": "playwright test tests/roomdetail.spec.ts --project=chromium --headed"
+    "test:roomdetail": "playwright test tests/roomdetail.spec.ts --project=chromium --headed",
+    "test:profile": "playwright test tests/profile.spec.ts --project=chromium --headed"
   },
   "repository": {
     "type": "git",

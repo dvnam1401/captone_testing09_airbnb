@@ -1,0 +1,167 @@
+import { Page, Locator } from "@playwright/test";
+
+export class ProfilePage {
+    readonly page: Page;
+
+    // locator
+    readonly editProfileButton : Locator;
+    readonly updateButton : Locator;
+    readonly emailInput : Locator;
+    readonly nameInput : Locator;
+    readonly phoneInPut : Locator;
+    readonly birthdayInput : Locator;
+    readonly genderInput : Locator;
+    readonly messageNoitceSuccess : Locator
+
+    readonly uppdateAvatarButton: Locator;
+    readonly chooseFileBtn: Locator;
+    readonly upploadAvatarBtn: Locator;
+    readonly messageUpploadAvatarSuccess: Locator;
+    readonly messageUpploadAvatarError: Locator;
+
+    readonly identityVerify: Locator;
+
+    readonly bookingItem: Locator;
+    readonly emptyMessage: Locator;
+
+    readonly loginBtnn : Locator
+    readonly formLogin : Locator
+    readonly userNameInput: Locator;
+    readonly passWordInput: Locator;
+    readonly loginButtonn: Locator;
+
+    constructor (page: Page) {
+        this.page = page
+
+        this.editProfileButton = page.getByRole("button", { name: "Chỉnh sửa hồ sơ" })
+        this.updateButton= page.locator("//div[contains(@class,'ant-modal-content')]//button[.//span[text()='Cập nhật']]")
+        this.emailInput = page.getByRole('textbox', { name: 'vidu@gmail.com' })
+        this.nameInput = page.locator(".ant-modal-content #name")
+        this.phoneInPut = page.locator(".ant-modal-content #phone")
+        this.birthdayInput = page.locator(".ant-modal-content #birthday")
+        this.genderInput = page.locator('.ant-modal-content .ant-select').first()
+        this.messageNoitceSuccess = page.locator("//div[@class='ant-message-notice-content']" +
+            "//span[contains(text(),'Cập nhật thông tin thành công')]")
+
+        this.uppdateAvatarButton = page.locator("//div[@class='ant-card-body']//button[contains(text(),'Cập nhật')]")
+        this.chooseFileBtn = page.locator("input[type='file']")  
+        this.upploadAvatarBtn = page.getByRole("button", { name: "Upload Avatar" })  
+        this.messageUpploadAvatarSuccess = page.locator("//div[@class='ant-message-notice-content']" +
+            "//span[contains(text(),'Cập nhật avatar thành công!')]")
+        this.messageUpploadAvatarError = page.locator(".ant-message-error")
+        
+        this.identityVerify = page.getByText("Xác minh danh tính", { exact: true })
+
+        this.bookingItem = page.locator("//div[@class='ant-card-body']/ancestor::a")
+        this.emptyMessage = page.getByText('Bạn chưa đặt phòng nào.')
+
+        this.loginBtnn = page.getByRole("button", { name: "Đăng nhập" })
+        this.formLogin = page.locator("form.space-y-5")
+        this.userNameInput = page.locator("#email")
+        this.passWordInput = page.locator("#password")
+        this.loginButtonn = page.locator("button[type='submit']")
+    }
+
+    //Dang nhap
+    async loginUser(username: string, password: string): Promise<void> {
+
+        this.userNameInput.waitFor({state:"visible", timeout:3000})
+        this.userNameInput.click()
+        this.userNameInput.fill(username)
+
+        await this.page.waitForTimeout(2000)
+
+        this.passWordInput.click()
+        this.passWordInput.fill(password)
+
+         await this.page.waitForTimeout(1000)
+
+        this.loginButtonn.click()
+
+        await this.page.waitForTimeout(2000)
+        
+    }
+
+    //Doi form xuat hien
+
+    async waitFormLogin(): Promise<void> {
+        await this.loginBtnn.click()
+        await this.formLogin.waitFor({state: 'visible'})
+        await this.page.waitForTimeout(2000)
+    }
+
+    //Cap nhat thong tin profile
+        //Click nut edit profile
+    async clickEditProfileBtn(): Promise<void> {
+        await this.editProfileButton.click()
+        await this.page.waitForTimeout(2000)
+    }
+
+        //Nhap email
+    async fillEmail(email:string): Promise<void> {
+        await this.emailInput.click()
+        await this.emailInput.clear()
+        await this.emailInput.fill(email)
+        await this.page.waitForTimeout(2000)
+    }
+
+        //Nhap name
+    async fillName(name:string): Promise<void> {
+        await this.nameInput.click()
+        await this.nameInput.clear()
+        await this.nameInput.fill(name)
+        await this.page.waitForTimeout(2000)
+    }    
+        //Nhap so dien thoai
+    async fillPhone(phone:string): Promise<void> {
+        await this.phoneInPut.click()
+        await this.phoneInPut.clear()
+        await this.phoneInPut.fill(phone)
+        await this.page.waitForTimeout(2000)
+    }
+        //Nhap ngay sinh
+    async fillBitrh(birth:string): Promise<void> {
+        await this.birthdayInput.click()
+        await this.birthdayInput.clear()
+        await this.birthdayInput.fill(birth)
+        await this.page.waitForTimeout(2000)
+    }
+        //chon gioi tinh
+    async selectGender(gender:string): Promise<void> {
+        await this.genderInput.waitFor({state:'visible'})
+        await this.genderInput.click()
+        await this.page
+        .locator('.ant-select-item-option', { hasText: gender })
+        .click();
+        
+    }
+
+        //Click nut cap nhat profile
+    async clickUpadteProdfileBtn(): Promise<void> {
+        await this.updateButton.waitFor({state:'visible', timeout:2000})
+        await this.updateButton.click()
+    }
+
+    //Upload Avatar
+    async uploadAvartar(path:string): Promise<void> {
+        // click nut cap nhat anh
+        await this.uppdateAvatarButton.waitFor()
+        await this.uppdateAvatarButton.click()
+        await this.page.waitForTimeout(2000)
+
+        // click nut choose file
+        await this.chooseFileBtn.waitFor({state: 'visible', timeout: 10000}) 
+        await this.chooseFileBtn.setInputFiles(path);
+        await this.page.waitForTimeout(2000)
+
+
+
+        // chọn hình và upload hình
+        await this.upploadAvatarBtn.waitFor({state:'visible', timeout: 10000})
+        await this.upploadAvatarBtn.click()
+        await this.page.waitForTimeout(3000)
+    }
+
+  
+
+}

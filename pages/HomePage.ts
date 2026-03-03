@@ -16,6 +16,9 @@ export class HomePage {
   readonly guestPopup: Locator;
   readonly guestCountText: Locator;
   readonly searchButton: Locator;
+  readonly imageUser: Locator;
+  readonly dashBoard: Locator;
+  readonly userImageLogin: Locator;
 
   constructor(page: Page, testInfo?: TestInfo) {
     this.page = page;
@@ -32,6 +35,9 @@ export class HomePage {
     this.guestPopup = this.addGuestTrigger;
     this.guestCountText = this.guestPopup.locator('*').filter({ hasText: /^\d+$/ }).first();
     this.searchButton = page.locator('.bg-main.ml-5').first();
+    this.imageUser = page.locator("img.rounded-full");
+    this.dashBoard = page.getByRole("link", { name: "Dashboard" });
+    this.userImageLogin = page.locator("img[src*='6596121']");
   }
 
   async goto(timeout: number = 60000): Promise<void> {
@@ -146,5 +152,20 @@ export class HomePage {
     const signOutButton = this.page.getByRole("button", { name: "Sign out" });
     await signOutButton.waitFor({ state: 'visible' });
     await signOutButton.click();
+  }
+
+  async clickUserImage(): Promise<void> {
+    await this.userImageLogin.click();
+    await this.page.waitForTimeout(2000);
+  }
+
+  async clickNameUser(): Promise<void> {
+    await this.imageUser.click();
+    await this.page.waitForTimeout(2000);
+  }
+
+  async clickDashBoard(): Promise<void> {
+    await this.dashBoard.click();
+    await this.page.waitForTimeout(2000);
   }
 }

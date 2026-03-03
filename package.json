@@ -14,7 +14,10 @@
     "test:booking-price": "playwright test booking-price --project=chromium --headed",
     "test:booking-negative": "playwright test booking-negative --project=chromium --headed",
     "test:booking-history": "playwright test booking-history --project=chromium --headed",
-    "test:register": "playwright test Register --project=chromium --headed"
+    "test:register": "playwright test Register --project=chromium --headed",
+    "test:home": "playwright test tests/home.spec.ts --project=chromium --headed",
+    "test:rooms": "playwright test tests/rooms.spec.ts --project=chromium --headed",
+    "test:roomdetail": "playwright test tests/roomdetail.spec.ts --project=chromium --headed"
   },
   "repository": {
     "type": "git",
@@ -29,8 +32,8 @@
   },
   "homepage": "https://github.com/dvnam1401/captone_testing09_airbnb#readme",
   "devDependencies": {
-    "@playwright/test": "^1.58.0",
-    "@types/node": "^25.0.10"
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.3.2"
   },
   "dependencies": {
     "csv-parse": "^6.1.0"

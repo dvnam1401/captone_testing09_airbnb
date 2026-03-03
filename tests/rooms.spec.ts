@@ -3,7 +3,7 @@ import { HomePage } from '../pages/HomePage';
 import { RoomsPage } from '../pages/RoomsPage';
 
 test.describe('Rooms Page', () => {
-  test('TC_R01 - Mo truc tiep trang danh sach phong', async ({ page }) => {
+  test('Mo truc tiep trang danh sach phong', async ({ page }) => {
     const roomsPage = new RoomsPage(page);
 
     await roomsPage.goto();
@@ -11,7 +11,7 @@ test.describe('Rooms Page', () => {
     await roomsPage.expectResultsOrEmptyState();
   });
 
-  test('TC_R02 - Chon dia diem va xac minh the phong hien thi day du thong tin', async ({ page }) => {
+  test('Chon dia diem va xac minh the phong hien thi day du thong tin', async ({ page }) => {
     const homePage = new HomePage(page);
     const roomsPage = new RoomsPage(page);
     const candidateDestinations = ['Hồ Chí Minh', 'Cần Thơ', 'Nha Trang', 'Hà Nội', 'Phú Quốc'];

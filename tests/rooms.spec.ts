@@ -75,4 +75,3 @@ test.describe('Rooms Page', () => {
     }
   });
 });
-});

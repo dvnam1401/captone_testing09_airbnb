@@ -83,7 +83,7 @@ test.describe("MODULE 3: BOOKING FLOW - NEGATIVE CASES", () => {
       );
     });
     for (const data of invalidDateData) {
-      test(`Đặt phòng với ngày không hợp lệ: Click ${data.firstClickDate} then ${data.secondClickDate}}`, async ({
+      test(`Đặt phòng với ngày không hợp lệ: Click ${data.firstClickDate} then ${data.secondClickDate}`, async ({
         page,
       }, testInfo) => {
         const homePage = new HomePage(page, testInfo);

@@ -3,7 +3,18 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "playwright test --project=chromium --headed",
+    "test:ui": "playwright test --ui",
+    "test:chrome": "playwright test --project=chromium",
+    "test:debug": "playwright test --debug",
+    "test:example": "playwright test example",
+    "test:report": "playwright show-report",
+    "test:booking-success": "playwright test booking-success --project=chromium --headed",
+    "test:booking-price": "playwright test booking-price --project=chromium --headed",
+    "test:booking-negative": "playwright test booking-negative --project=chromium --headed",
+    "test:booking-history": "playwright test booking-history --project=chromium --headed"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dvnam1401/captone_testing09_airbnb.git"
@@ -19,5 +30,8 @@
   "devDependencies": {
     "@playwright/test": "^1.58.0",
     "@types/node": "^25.0.10"
+  },
+  "dependencies": {
+    "csv-parse": "^6.1.0"
   }
 }

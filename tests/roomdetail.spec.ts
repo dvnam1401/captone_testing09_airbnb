@@ -24,7 +24,7 @@ async function openAnyRoomFromList(roomsPage: RoomsPage): Promise<boolean> {
 }
 
 test.describe('Room Detail Page', () => {
-  test('TC_RD01 - Truy cap trang chi tiet phong thanh cong', async ({ page }) => {
+  test('Truy cap trang chi tiet phong thanh cong', async ({ page }) => {
     const roomsPage = new RoomsPage(page);
     const roomDetailPage = new RoomDetailPage(page);
 

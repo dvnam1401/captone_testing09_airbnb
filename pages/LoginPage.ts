@@ -33,7 +33,7 @@ export class LoginPage {
 
   async login(email: string, password: string): Promise<void> {
     // Bước 1: Truy cập trang chủ (để thấy được Avatar)
-    await this.page.goto("/");
+    await this.page.goto("https://demo5.cybersoft.edu.vn/");
 
     // Bước 2: Click vào Avatar icon
     await this.avatarIcon.click();

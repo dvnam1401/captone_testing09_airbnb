@@ -1,4 +1,4 @@
-import { Page, Locator } from "@playwright/test";
+import { Page, Locator} from "@playwright/test";
 
 export class ProfilePage {
     readonly page: Page;
@@ -23,12 +23,10 @@ export class ProfilePage {
 
     readonly bookingItem: Locator;
     readonly emptyMessage: Locator;
+    readonly nameUser: Locator;
 
-    readonly loginBtnn : Locator
-    readonly formLogin : Locator
-    readonly userNameInput: Locator;
-    readonly passWordInput: Locator;
-    readonly loginButtonn: Locator;
+    readonly iconX: Locator;
+
 
     constructor (page: Page) {
         this.page = page
@@ -54,50 +52,20 @@ export class ProfilePage {
 
         this.bookingItem = page.locator("//div[@class='ant-card-body']/ancestor::a")
         this.emptyMessage = page.getByText('Bạn chưa đặt phòng nào.')
+        this.nameUser = page.locator("span.capitalize")
 
-        this.loginBtnn = page.getByRole("button", { name: "Đăng nhập" })
-        this.formLogin = page.locator("form.space-y-5")
-        this.userNameInput = page.locator("#email")
-        this.passWordInput = page.locator("#password")
-        this.loginButtonn = page.locator("button[type='submit']")
+        this.iconX =  page.locator('svg[data-icon="close-circle"]').nth(3);   
+
     }
 
-    //Dang nhap
-    async loginUser(username: string, password: string): Promise<void> {
-
-        this.userNameInput.waitFor({state:"visible", timeout:3000})
-        this.userNameInput.click()
-        this.userNameInput.fill(username)
-
-        await this.page.waitForTimeout(2000)
-
-        this.passWordInput.click()
-        this.passWordInput.fill(password)
-
-         await this.page.waitForTimeout(1000)
-
-        this.loginButtonn.click()
-
-        await this.page.waitForTimeout(2000)
-        
-    }
-
-    //Doi form xuat hien
-
-    async waitFormLogin(): Promise<void> {
-        await this.loginBtnn.click()
-        await this.formLogin.waitFor({state: 'visible'})
-        await this.page.waitForTimeout(2000)
-    }
-
-    //Cap nhat thong tin profile
-        //Click nut edit profile
+    //Cập nhật thông tin profile
+        //Click edit profile
     async clickEditProfileBtn(): Promise<void> {
         await this.editProfileButton.click()
         await this.page.waitForTimeout(2000)
     }
 
-        //Nhap email
+        //Nhập email
     async fillEmail(email:string): Promise<void> {
         await this.emailInput.click()
         await this.emailInput.clear()
@@ -105,28 +73,29 @@ export class ProfilePage {
         await this.page.waitForTimeout(2000)
     }
 
-        //Nhap name
+        //Nhập name
     async fillName(name:string): Promise<void> {
         await this.nameInput.click()
         await this.nameInput.clear()
         await this.nameInput.fill(name)
         await this.page.waitForTimeout(2000)
     }    
-        //Nhap so dien thoai
+        //Nhập số điện thoại
     async fillPhone(phone:string): Promise<void> {
         await this.phoneInPut.click()
         await this.phoneInPut.clear()
         await this.phoneInPut.fill(phone)
         await this.page.waitForTimeout(2000)
     }
-        //Nhap ngay sinh
+        //Nhập ngày sinh
     async fillBitrh(birth:string): Promise<void> {
         await this.birthdayInput.click()
-        await this.birthdayInput.clear()
-        await this.birthdayInput.fill(birth)
+        await this.iconX.click()
+        await this.birthdayInput.pressSequentially(birth);    
+        await this.page.keyboard.press('Enter');
         await this.page.waitForTimeout(2000)
     }
-        //chon gioi tinh
+        //Chọn giới tính
     async selectGender(gender:string): Promise<void> {
         await this.genderInput.waitFor({state:'visible'})
         await this.genderInput.click()
@@ -136,7 +105,7 @@ export class ProfilePage {
         
     }
 
-        //Click nut cap nhat profile
+        //Click cập nhật Profile
     async clickUpadteProdfileBtn(): Promise<void> {
         await this.updateButton.waitFor({state:'visible', timeout:2000})
         await this.updateButton.click()
@@ -144,12 +113,12 @@ export class ProfilePage {
 
     //Upload Avatar
     async uploadAvartar(path:string): Promise<void> {
-        // click nut cap nhat anh
+        // click cập nhật ảnh
         await this.uppdateAvatarButton.waitFor()
         await this.uppdateAvatarButton.click()
         await this.page.waitForTimeout(2000)
 
-        // click nut choose file
+        // click choose file
         await this.chooseFileBtn.waitFor({state: 'visible', timeout: 10000}) 
         await this.chooseFileBtn.setInputFiles(path);
         await this.page.waitForTimeout(2000)

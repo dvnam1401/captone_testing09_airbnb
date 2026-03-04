@@ -4,7 +4,7 @@ import { LoginModal } from '../pages/LoginModal';
 import { LogoutModal } from '../pages/LogoutModal';
 
 test.describe('Login', () => {
-    test('Đăng nhập với tài khoản đã đăng ký', async ({ page }) => {
+    test("Đăng xuất với tài khoản đã đăng nhập", async ({ page }) => {
         const homePage = new HomePage(page);
 
         const logoutModal = new LogoutModal(page);

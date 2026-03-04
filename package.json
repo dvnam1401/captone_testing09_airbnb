@@ -18,7 +18,9 @@
     "test:home": "playwright test tests/home.spec.ts --project=chromium --headed",
     "test:rooms": "playwright test tests/rooms.spec.ts --project=chromium --headed",
     "test:roomdetail": "playwright test tests/roomdetail.spec.ts --project=chromium --headed",
-    "test:profile": "playwright test tests/profile.spec.ts --project=chromium --headed"
+    "test:profile-info": "playwright test tests/profile-infoUser.spec.ts --project=chromium --headed",
+    "test:profile-edit": "playwright test tests/profile-editUser.spec.ts --project=chromium --headed",
+    "test:profile-uplAvt": "playwright test tests/profile-uploadAvatar.spec.ts --project=chromium --headed"
   },
   "repository": {
     "type": "git",
